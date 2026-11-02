@@ -68,6 +68,7 @@ landmark 11. See `results/per_landmark_disagreement.csv`.
 scripts/wingio.py                  loaders and Procrustes utilities
 scripts/01_find_landmark_map.py    recover the landmark-numbering map
 scripts/02_match_and_error.py      match deposits, estimate error
+scripts/03_known_crosses.py        reference transfer and known-pedigree crosses
 data/README.md                     source DOIs and how to fetch them
 results/                           generated tables and summary
 ```
@@ -84,7 +85,41 @@ python 01_find_landmark_map.py ../data/raw_coordinates.xlsx ../data/EC-raw-coord
 python 02_match_and_error.py  ../data/raw_coordinates.xlsx ../data/EC-raw-coordinates.csv
 ```
 
-Step 1 must run first; step 2 reads the landmark map it writes.
+python 03_known_crosses.py ../data/oo_404830.txt \
+    ../data/Nawrocka_et_al2018.csv ../data/Nawrocka_et_al2018-geo-data.csv
+```
+
+Step 1 must run first; step 2 reads the landmark map it writes. Step 3 is
+independent of both.
+
+## Reference transfer and known crosses
+
+Step 3 applies a reference classifier built on the Oberursel material to
+9,590 wings of known pedigree — 200 queens, 24 genotypes by instrumental
+insemination.
+
+| quantity | value |
+|---|---|
+| reference leave-one-colony-out accuracy | 41/41 (100%) |
+| offset between the two datasets | 0.0247 |
+| reference between-subspecies distances | 0.0194 - 0.0322 |
+| inter-team digitization error (step 2) | 0.0096 |
+
+The offset between datasets is as large as the difference between subspecies,
+and 2.6 times the digitization error measured on the same images in step 2.
+Applied raw, the classifier misassigns known-pure caucasica entirely;
+correcting the offset recovers it.
+
+Across 83 F1 colonies, 36.1% are assigned to the queen's subspecies, 55.4% to
+the drone's and 8.4% to a third. Two of the three reciprocal pairs — identical
+nuclear composition, opposite parental direction — are assigned to different
+subspecies, so **assignment of a known F1 is not predictable from parentage**.
+
+The two datasets agree only partly on how the subspecies differ (mean cosine
+0.495). A measurement offset and genuine divergence of selected breeding lines
+are confounded here and cannot be separated from these data.
+
+```text
 
 ## Scope and limits
 

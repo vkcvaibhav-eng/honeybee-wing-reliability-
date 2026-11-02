@@ -1,6 +1,7 @@
 # raw data from third-party deposits is never committed; see data/README.md
 data/*.xlsx
 data/*.csv
+data/*.txt
 data/*.tps
 data/*.zip
 data/*.tif

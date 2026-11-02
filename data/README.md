@@ -18,7 +18,7 @@ possible, and it happens only once in the public record.
 
 | source | DOI |
 |---|---|
-| Nawrocka, Kandemir, Fuchs & Tofilski — 19-landmark coordinates, 1,832 workers, 187 colonies, 25 subspecies, 4 lineages, from the Morphometric Bee Data Bank, Oberursel | 10.5281/zenodo.7567336 |
+| `Nawrocka_et_al2018.csv` and `Nawrocka_et_al2018-geo-data.csv` — 19-landmark coordinates, 1,832 workers, 187 colonies, 25 subspecies, 4 lineages, from the Morphometric Bee Data Bank, Oberursel | 10.5281/zenodo.7567336 |
 
 ## Additional deposits used in the within-colony variance analysis
 
@@ -40,9 +40,16 @@ possible, and it happens only once in the public record.
 
 ## Known crosses
 
-| source | note |
-|---|---|
-| Węgrzynowicz et al. — wing venation measurements for *A. m. caucasica*, *A. m. carnica* and *A. m. mellifera*, their hybrids and backcrosses: 9,590 wings, 200 queens, 24 genotypes by instrumental insemination | the only honey bee wing material with known pedigree |
+| file in this directory | source | DOI |
+|---|---|---|
+| `oo_404830.txt` | Węgrzynowicz & Łoś — wing venation measurements for *A. m. caucasica*, *A. m. carnica* and *A. m. mellifera*, their hybrids and backcrosses: 9,590 wings, 200 queens, 24 genotypes by instrumental insemination. The only honey bee wing material with known pedigree. | 10.3897/BDJ.8.e53724 |
+| `oo_404831.txt` | genotype key for the same data paper | 10.3897/BDJ.8.e53724 |
+
+Released under a Creative Commons Zero public domain waiver.
+
+Note on the file: eight of the twelve backcross genotypes are spelled `Bc...`
+and four `BC...`. `scripts/03_known_crosses.py` normalises the case; a naive
+prefix filter silently drops two thirds of the backcrosses.
 
 ## Licensing
 
