@@ -1,3 +1,11 @@
+# Measurement displacement between honey bee wing datasets
+
+**Authoritative results: `results/corrected_estimates.md` (step 8) and `results/review_round2.md` (step 9).** Those supersede figures in steps 2, 4, 5, 6 and 7 and in this README's later sections, which are retained for history. Two rounds of editorial review corrected substantive errors; the commit history records each.
+
+Run order: `01` to `07` build the pipeline, `08` corrects the estimators, `09` supplies the statistics required by the second review and writes the figures.
+
+---
+
 # Measurement reliability in honey bee wing geometric morphometrics
 
 Analysis code for a study of measurement reliability and within-colony shape
@@ -33,10 +41,10 @@ exists because both groups deposited their data openly.
 | wings matched one-to-one across deposits | 642 of 663 (96.8%) |
 | centroid-size correlation between teams | r = 0.986 |
 | median Procrustes distance between teams, same wing | 0.0096 |
-| error as share of total shape variance | 7.5% |
-| error as share of within-colony variance | 11.2% |
-| error as share of among-colony variance | 22.3% |
-| same, after averaging 9.8 wings per colony | 2.3% |
+| half mean squared disagreement | 0.000110 (CI 0.000074-0.000155) |
+| mean displacement between the two measurement sets | 0.00875 (CI 0.00844-0.00916) |
+| displacement share of that disagreement | 34.8% |
+| displacement / median distance between colony means | 0.44 |
 
 Two consequences:
 
@@ -45,9 +53,16 @@ and subspecies assignment compares colony means, and averaging around ten
 wings reduces error in the mean to roughly 5% of among-colony variance. That
 practice holds up.
 
-**Analyses using within-colony spread are not protected.** 11.2% of
-within-colony variance is digitizing noise; 89% is real signal. Any use of
-within-colony variance must subtract the error variance first.
+**SUPERSEDED FIGURES.** Earlier commits reported 7.5% of total shape
+variance, 2.3% of among-colony variance after averaging, and agreement
+between two independent error routes to within 5%. All three were wrong and
+are withdrawn: steps 2 and 4 used estimators differing by a factor of two,
+and dividing a squared displacement by among-colony variance is a category
+error, since a constant displacement moves every colony mean together and
+creates no variation among colonies measured by one observer. See
+`results/corrected_estimates.md` and `results/review_round2.md`, which are
+authoritative. Figures in sections below predating those files should be read
+against them.
 
 ### Two independent routes to the same number
 

@@ -38,7 +38,8 @@ from collections import defaultdict
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from wingio import load_identifly_csv, preshape, rotate_onto
+from wingio import (collapse_bilateral_aligned, load_identifly_csv,
+                    preshape, rotate_onto)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
@@ -54,7 +55,7 @@ SIDE_RE = re.compile(r"-(LW|RW1|RW|L|R)([-.])")
 
 
 def individuals(X, names):
-    """Collapse to one configuration per bee, averaging both wings when present."""
+    """One configuration per bee, aligning both wings before averaging."""
     seen = defaultdict(dict)
     for i, name in enumerate(names):
         m = SIDE_RE.search(name)
@@ -62,12 +63,7 @@ def individuals(X, names):
             seen[name[:m.start()] + "-X" + name[m.end() - 1:]][m.group(1)[0]] = i
         else:
             seen[name]["R"] = i
-    configs, keys = [], []
-    for key, sides in seen.items():
-        idx = list(sides.values())
-        configs.append(X[idx].mean(axis=0) if len(idx) == 2 else X[idx[0]])
-        keys.append(key)
-    return np.stack(configs), keys
+    return collapse_bilateral_aligned(X, seen), list(seen)
 
 
 def joint_gpa(stack, iterations=10):
@@ -143,6 +139,10 @@ def main():
                      np.median(var), err, np.median(corrected)))
         w(f"| {tag} | {mating} | {len(var)} | {sizes.mean():.1f} | "
           f"{np.median(var):.6f} | {err:.6f} | {np.median(corrected):.6f} |")
+    w("\nThe raw column is the descriptive within-colony variance; the "
+      "corrected column subtracts an error floor whose provenance differs "
+      "between deposits and is reported for comparison only. The raw values "
+      "are the ones quoted in the manuscript.")
 
     natural = np.concatenate([v for v, m in store.values() if m == "natural"])
     single = store["Wegrzynowicz"][0]

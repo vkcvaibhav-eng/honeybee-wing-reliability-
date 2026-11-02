@@ -38,11 +38,11 @@ For scale, the reference's own between-subspecies distances run 0.01941 to 0.032
 | Algeria 2018 | Algeria 2024 | 0.01256 | same group, same region |
 | Algeria 2018 | Calfee Arg. (re-m.) | 0.01259 | same group, other region |
 | Nawrocka reference | Algeria 2018 | 0.01286 | same group, other region |
-| Serbia | Calfee USA (re-m.) | 0.01295 | same group, other region |
+| Serbia | Calfee USA (re-m.) | 0.01294 | same group, other region |
 | Nawrocka reference | Calfee USA (re-m.) | 0.01377 | same group, other region |
 | Nawrocka reference | Ecuador (re-meas.) | 0.01406 | same group, other region |
 | Algeria 2018 | Calfee USA (re-m.) | 0.01521 | same group, other region |
-| Nawrocka reference | Algeria 2024 | 0.01657 | same group, other region |
+| Nawrocka reference | Algeria 2024 | 0.01658 | same group, other region |
 | Algeria 2024 | Calfee Arg. (re-m.) | 0.01682 | same group, other region |
 | Serbia | Calfee Arg. (re-m.) | 0.01740 | same group, other region |
 | Ecuador (re-meas.) | Algeria 2018 | 0.01767 | same group, other region |
@@ -56,7 +56,7 @@ For scale, the reference's own between-subspecies distances run 0.01941 to 0.032
 | Algeria 2018 | Masaquiza original | 0.02132 | different group |
 | Ecuador (re-meas.) | Algeria 2024 | 0.02152 | same group, other region |
 | Ecuador (re-meas.) | Wegrzynowicz | 0.02193 | different group |
-| Ecuador (re-meas.) | Serbia | 0.02274 | same group, other region |
+| Ecuador (re-meas.) | Serbia | 0.02275 | same group, other region |
 | Calfee Arg. (re-m.) | Masaquiza original | 0.02275 | different group |
 | Algeria 2024 | Masaquiza original | 0.02351 | different group |
 | Calfee USA (re-m.) | Masaquiza original | 0.02398 | different group |

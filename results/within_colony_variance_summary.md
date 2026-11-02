@@ -8,6 +8,8 @@ Every Wegrzynowicz colony was inseminated with semen from one drone, so its work
 | Algeria 2018 | natural | 46 | 10.0 | 0.000425 | 0.000023 | 0.000402 |
 | Wegrzynowicz | single-drone | 201 | 47.7 | 0.000483 | 0.000047 | 0.000436 |
 
+The raw column is the descriptive within-colony variance; the corrected column subtracts an error floor whose provenance differs between deposits and is reported for comparison only. The raw values are the ones quoted in the manuscript.
+
 ## The prediction fails, in the opposite direction
 
 | group | colonies | median | 25th-75th percentile |

@@ -37,8 +37,8 @@ import numpy as np
 from scipy.optimize import linear_sum_assignment
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from wingio import (NLM, centroid_size, gpa, load_identifly_csv,
-                    load_tps_xlsx, preshape, rotate_onto)
+from wingio import (NLM, centroid_size, collapse_bilateral_aligned, gpa,
+                    load_identifly_csv, load_tps_xlsx, preshape, rotate_onto)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
@@ -61,18 +61,14 @@ DEPOSITS = [
 
 
 def collapse_bilateral(X, names):
-    """One configuration per bee, averaging both forewings where present."""
+    """One configuration per bee, aligning both forewings before averaging."""
     seen = defaultdict(dict)
     for i, name in enumerate(names):
         m = SIDE_RE.search(name)
         key = name[:m.start()] + "-X" + name[m.end() - 1:] if m else name
         side = m.group(1)[0] if m else "R"
         seen[key][side] = i
-    out = []
-    for sides in seen.values():
-        idx = list(sides.values())
-        out.append(X[idx].mean(axis=0) if len(idx) == 2 else X[idx[0]])
-    return np.stack(out)
+    return collapse_bilateral_aligned(X, seen)
 
 
 def load(kind, fname, ns):

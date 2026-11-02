@@ -165,6 +165,26 @@ def gpa(A, iterations=15):
     return P, ref
 
 
+def collapse_bilateral_aligned(X, keys_by_side):
+    """One configuration per bee, aligning the two forewings before averaging.
+
+    keys_by_side maps a specimen key to {"L": index, "R": index} (either may
+    be absent). Averaging raw coordinates before alignment mixes orientation
+    with shape; the two configurations are therefore Procrustes-aligned to
+    each other first, which is what Methods section 2.3 states.
+    """
+    out = []
+    for sides in keys_by_side.values():
+        idx = list(sides.values())
+        if len(idx) == 1:
+            out.append(X[idx[0]])
+            continue
+        P, _ = preshape(X[idx])
+        P1 = rotate_onto(P[0], P[1])
+        out.append((P[0] + P1) / 2.0)
+    return np.stack(out)
+
+
 def shape_variance(aligned, mean_shape):
     """Mean squared Procrustes distance from the mean shape."""
     return ((aligned - mean_shape) ** 2).sum() / len(aligned)
