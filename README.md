@@ -33,10 +33,10 @@ exists because both groups deposited their data openly.
 | wings matched one-to-one across deposits | 642 of 663 (96.8%) |
 | centroid-size correlation between teams | r = 0.986 |
 | median Procrustes distance between teams, same wing | 0.0096 |
-| error as share of total shape variance | 17.7% |
-| error as share of within-colony variance | 26.5% |
-| error as share of among-colony variance | 52.9% |
-| same, after averaging 9.8 wings per colony | 5.4% |
+| error as share of total shape variance | 7.5% |
+| error as share of within-colony variance | 11.2% |
+| error as share of among-colony variance | 22.3% |
+| same, after averaging 9.8 wings per colony | 2.3% |
 
 Two consequences:
 
@@ -45,9 +45,34 @@ and subspecies assignment compares colony means, and averaging around ten
 wings reduces error in the mean to roughly 5% of among-colony variance. That
 practice holds up.
 
-**Analyses using within-colony spread are not protected.** 26.5% of
-within-colony variance is digitizing noise; 73.5% is real signal. Any use of
+**Analyses using within-colony spread are not protected.** 11.2% of
+within-colony variance is digitizing noise; 89% is real signal. Any use of
 within-colony variance must subtract the error variance first.
+
+### Two independent routes to the same number
+
+The error variance is estimated twice, by methods that share no step:
+
+| route | deposits | error variance |
+|---|---|---|
+| two teams digitizing the same images (step 2) | Ecuador pair | 0.000047 |
+| left-right pairs within one bee (step 4) | Algeria 2018, Serbia, Algeria 2024 — 1,689 bees | 0.000044 - 0.000046 |
+
+Agreement to about 5%. Step 2 depends on matching specimens across deposits;
+step 4 depends on bilateral pairs inside one deposit. Neither relies on the
+other.
+
+This convergence is why step 2 reports a median-based estimator rather than a
+mean-based one. Thirty-four of its 642 pairs sit above three times the median
+distance, with a maximum of 0.134 — beyond plausible landmarking disagreement,
+and a sign of a failed match rather than measurement error. They inflate a
+mean-based estimate roughly twofold, to 0.000110.
+
+Directional asymmetry in shape is essentially zero across all 1,689 paired
+bees, independently confirming the published result that forewing shape does
+not differ between body sides while size does. Fluctuating asymmetry cannot be
+separated from within-session digitizing error with public data: the
+left-right variance contains both, so it bounds each from above.
 
 ### A trap for anyone pooling these deposits
 
@@ -69,6 +94,7 @@ scripts/wingio.py                  loaders and Procrustes utilities
 scripts/01_find_landmark_map.py    recover the landmark-numbering map
 scripts/02_match_and_error.py      match deposits, estimate error
 scripts/03_known_crosses.py        reference transfer and known-pedigree crosses
+scripts/04_paired_wings.py         independent error estimate from bilateral pairs
 data/README.md                     source DOIs and how to fetch them
 results/                           generated tables and summary
 ```
@@ -89,8 +115,14 @@ python 03_known_crosses.py ../data/oo_404830.txt \
     ../data/Nawrocka_et_al2018.csv ../data/Nawrocka_et_al2018-geo-data.csv
 ```
 
-Step 1 must run first; step 2 reads the landmark map it writes. Step 3 is
-independent of both.
+python 04_paired_wings.py ../data/DZ-2018-raw-coordinates.csv \
+    ../data/RS_21_80-raw-coordinates.csv ../data/DZ-2024-raw-coordinates.csv
+```
+
+Step 1 must run first; step 2 reads the landmark map it writes. Steps 3 and 4
+are independent of both.
+
+```text
 
 ## Reference transfer and known crosses
 

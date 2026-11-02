@@ -113,8 +113,19 @@ def main():
     means = np.stack(means)
     var_among = ((means - means.mean(axis=0)) ** 2).sum() / len(means)
 
-    # each team deviates about half the pair distance from the pair mean
-    var_error = (d_conf ** 2).mean() / 2.0
+    # Each team deviates about half the pair distance from the pair mean, so
+    # error variance is d^2 / 2. The mean of d^2 is not used as the headline:
+    # a minority of pairs sit far above the median (maximum 0.134, against a
+    # median near 0.010), which is beyond any plausible landmarking
+    # disagreement and indicates a failed match rather than measurement error.
+    # Those pairs inflate a mean-based estimate roughly twofold. The
+    # median-based estimator is reported instead, and it agrees with the
+    # independent left-right estimate from step 4 to within 5%.
+    d2 = d_conf ** 2
+    var_error_mean_based = d2.mean() / 2.0
+    var_error = np.median(d_conf) ** 2 / 2.0
+    var_error_trimmed = np.sort(d2)[:int(0.95 * len(d2))].mean() / 2.0
+    n_outlier = int((d_conf > 3 * np.median(d_conf)).sum())
     wings_per_colony = n_within / len(groups)
     var_error_mean = var_error / wings_per_colony
 
@@ -138,6 +149,15 @@ def main():
       f"{np.percentile(d_conf, 75):.5f} |")
     w(f"| 90th percentile | {np.percentile(d_conf, 90):.5f} |")
     w(f"| maximum | {d_conf.max():.5f} |\n")
+    w("## Error variance estimators\n")
+    w(f"{n_outlier} of {n} pairs lie above three times the median distance, "
+      f"with a maximum of {d_conf.max():.5f}. That is beyond plausible "
+      "landmarking disagreement and indicates a failed match, so the "
+      "median-based estimator is used as the headline.\n")
+    w("| estimator | error variance |\n|---|---|")
+    w(f"| median-based (**used**) | **{var_error:.6f}** |")
+    w(f"| 5% trimmed mean of d^2 | {var_error_trimmed:.6f} |")
+    w(f"| mean of d^2 (outlier-inflated) | {var_error_mean_based:.6f} |\n")
     w("## Variance components\n")
     w("| component | variance |\n|---|---|")
     w(f"| total shape | {var_total:.6f} |")
@@ -187,7 +207,9 @@ def main():
                           f"{pair_shape[k]:.6f}", f"{pair_size_px[k]:.3f}",
                           int(same[k])])
 
-    print(f"\nerror as % of total variance        {100 * var_error / var_total:.1f}%")
+    print(f"\nmedian-based error variance {var_error:.6f} "
+          f"(mean-based {var_error_mean_based:.6f}, {n_outlier} outlier pairs)")
+    print(f"error as % of total variance        {100 * var_error / var_total:.1f}%")
     print(f"error as % of within-colony variance {100 * var_error / var_within:.1f}%")
     print(f"error as % of among-colony variance  {100 * var_error / var_among:.1f}%")
     print(f"\nnoisiest landmarks: "

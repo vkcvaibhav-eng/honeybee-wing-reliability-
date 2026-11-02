@@ -29,13 +29,13 @@ possible, and it happens only once in the public record.
 | Southwestern Asia | 10.5281/zenodo.17075125 |
 | Jammu and Kashmir, India | 10.5281/zenodo.8071014 |
 | Kazakhstan | 10.5281/zenodo.8128010 |
-| Serbia | 10.5281/zenodo.10389960 |
+| Serbia — `RS_21_80-raw-coordinates.csv`, 1,065 bees with both forewings | 10.5281/zenodo.10389960 |
 | Tabasco, Mexico | 10.5281/zenodo.13884732 |
-| Algeria 2018 | 10.5281/zenodo.18359322 |
-| Algeria 2024 | 10.5281/zenodo.13939415 |
+| Algeria 2018 — `DZ-2018-raw-coordinates.csv`, 460 bees with **both** forewings | 10.5281/zenodo.18359322 |
+| Algeria 2024 — `DZ-2024-raw-coordinates.csv`, 164 bees with both forewings | 10.5281/zenodo.13939415 |
 | Algeria 2025 | 10.5281/zenodo.18360081 |
 | Queens and drones | 10.5281/zenodo.8396176 |
-| Africanized bees, California and Argentina — re-measurement of Calfee et al. | 10.5281/zenodo.14604479 |
+| Africanized bees, California and Argentina — re-measurement of Calfee et al.; `US-` and `AR-raw-coordinates.csv` mix left and right wings with no bilateral pairs | 10.5281/zenodo.14604479 |
 | Africanized bees — original images and ImageJ wing lengths, with individual genomic ancestry (Dryad) | 10.25338/B8T032 |
 
 ## Known crosses
@@ -58,3 +58,19 @@ carries a share-alike requirement. Any derived database built from them —
 including the tables in `../results/` — must be released under the same
 licence, with attribution to the source deposits. Attribution is given by DOI
 in this file and in the manuscript.
+
+## Note on wing side
+
+Three deposits hold **both forewings of the same bee** — Algeria 2018 (460
+bees, complete pairing), Serbia (1,065 of 1,217 specimens) and Algeria 2024
+(164). `scripts/04_paired_wings.py` uses these for an error estimate
+independent of the Ecuador pair.
+
+Their left wings were already flipped during image preparation, so no
+reflection should be applied; doing so makes left-right distances about fifty
+times worse. The script checks this rather than assuming it.
+
+136 Serbia specimens carry no side marker in the filename and are excluded
+from the paired analysis. The Calfee re-measurements mix left and right wings
+without bilateral pairs: 73 right and 26 left for the United States, 159 right
+and 18 left for Argentina.
