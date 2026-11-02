@@ -1,0 +1,37 @@
+deposit_a,deposit_b,offset,comparison,group_a,region_a,group_b,region_b
+Calfee USA (re-m.),Calfee Arg. (re-m.),0.007805,"same group, other region",Krakow,California,Krakow,Argentina
+Ecuador (re-meas.),Masaquiza original,0.008910,different group,Krakow,Ecuador,Ecuador team,Ecuador
+Nawrocka reference,Calfee Arg. (re-m.),0.009783,"same group, other region",Krakow,native range,Krakow,Argentina
+Algeria 2018,Algeria 2024,0.012561,"same group, same region",Krakow,Algeria,Krakow,Algeria
+Algeria 2018,Calfee Arg. (re-m.),0.012591,"same group, other region",Krakow,Algeria,Krakow,Argentina
+Nawrocka reference,Algeria 2018,0.012859,"same group, other region",Krakow,native range,Krakow,Algeria
+Serbia,Calfee USA (re-m.),0.012945,"same group, other region",Krakow,Serbia,Krakow,California
+Nawrocka reference,Calfee USA (re-m.),0.013770,"same group, other region",Krakow,native range,Krakow,California
+Nawrocka reference,Ecuador (re-meas.),0.014059,"same group, other region",Krakow,native range,Krakow,Ecuador
+Algeria 2018,Calfee USA (re-m.),0.015209,"same group, other region",Krakow,Algeria,Krakow,California
+Nawrocka reference,Algeria 2024,0.016574,"same group, other region",Krakow,native range,Krakow,Algeria
+Algeria 2024,Calfee Arg. (re-m.),0.016818,"same group, other region",Krakow,Algeria,Krakow,Argentina
+Serbia,Calfee Arg. (re-m.),0.017399,"same group, other region",Krakow,Serbia,Krakow,Argentina
+Ecuador (re-meas.),Algeria 2018,0.017670,"same group, other region",Krakow,Ecuador,Krakow,Algeria
+Nawrocka reference,Masaquiza original,0.018268,different group,Krakow,native range,Ecuador team,Ecuador
+Ecuador (re-meas.),Calfee Arg. (re-m.),0.018600,"same group, other region",Krakow,Ecuador,Krakow,Argentina
+Masaquiza original,Wegrzynowicz,0.018793,different group,Ecuador team,Ecuador,Skierniewice,"Poland, bred"
+Ecuador (re-meas.),Calfee USA (re-m.),0.019472,"same group, other region",Krakow,Ecuador,Krakow,California
+Nawrocka reference,Serbia,0.019659,"same group, other region",Krakow,native range,Krakow,Serbia
+Serbia,Algeria 2018,0.020492,"same group, other region",Krakow,Serbia,Krakow,Algeria
+Algeria 2024,Calfee USA (re-m.),0.020881,"same group, other region",Krakow,Algeria,Krakow,California
+Algeria 2018,Masaquiza original,0.021321,different group,Krakow,Algeria,Ecuador team,Ecuador
+Ecuador (re-meas.),Algeria 2024,0.021519,"same group, other region",Krakow,Ecuador,Krakow,Algeria
+Ecuador (re-meas.),Wegrzynowicz,0.021925,different group,Krakow,Ecuador,Skierniewice,"Poland, bred"
+Ecuador (re-meas.),Serbia,0.022744,"same group, other region",Krakow,Ecuador,Krakow,Serbia
+Calfee Arg. (re-m.),Masaquiza original,0.022753,different group,Krakow,Argentina,Ecuador team,Ecuador
+Algeria 2024,Masaquiza original,0.023507,different group,Krakow,Algeria,Ecuador team,Ecuador
+Calfee USA (re-m.),Masaquiza original,0.023976,different group,Krakow,California,Ecuador team,Ecuador
+Serbia,Algeria 2024,0.024583,"same group, other region",Krakow,Serbia,Krakow,Algeria
+Serbia,Masaquiza original,0.026359,different group,Krakow,Serbia,Ecuador team,Ecuador
+Nawrocka reference,Wegrzynowicz,0.026537,different group,Krakow,native range,Skierniewice,"Poland, bred"
+Algeria 2018,Wegrzynowicz,0.029497,different group,Krakow,Algeria,Skierniewice,"Poland, bred"
+Algeria 2024,Wegrzynowicz,0.030438,different group,Krakow,Algeria,Skierniewice,"Poland, bred"
+Calfee Arg. (re-m.),Wegrzynowicz,0.033124,different group,Krakow,Argentina,Skierniewice,"Poland, bred"
+Serbia,Wegrzynowicz,0.034100,different group,Krakow,Serbia,Skierniewice,"Poland, bred"
+Calfee USA (re-m.),Wegrzynowicz,0.034509,different group,Krakow,California,Skierniewice,"Poland, bred"

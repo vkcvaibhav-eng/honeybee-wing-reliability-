@@ -96,6 +96,7 @@ scripts/02_match_and_error.py      match deposits, estimate error
 scripts/03_known_crosses.py        reference transfer and known-pedigree crosses
 scripts/04_paired_wings.py         independent error estimate from bilateral pairs
 scripts/05_within_colony_variance.py  is within-colony spread comparable across deposits?
+scripts/06_offset_matrix.py        pairwise offsets across all nine deposits
 data/README.md                     source DOIs and how to fetch them
 results/                           generated tables and summary
 ```
@@ -121,6 +122,7 @@ python 04_paired_wings.py ../data/DZ-2018-raw-coordinates.csv \
 ```
 
 python 05_within_colony_variance.py
+python 06_offset_matrix.py
 ```
 
 Step 1 must run first; step 2 reads the landmark map it writes. Steps 3, 4 and
@@ -154,6 +156,38 @@ for **location**, because the offset between deposit means matches the
 difference between subspecies, and for **scale**, because within-colony
 variances differ by more than mating structure can explain. Within a single
 deposit, both behave.
+
+## The digitizing group matters more than geography
+
+Step 6 puts all nine deposits in one frame and reports every pairwise offset,
+after verifying landmark numbering and handedness for each. Offsets grow as
+deposits share less:
+
+| comparison | pairs | median offset |
+|---|---|---|
+| same group, same region | 1 | 0.01256 |
+| same group, other region | 20 | 0.01711 |
+| different group | 15 | 0.02398 |
+| *reference between-subspecies, for scale* | | *0.01941 - 0.03216* |
+| *reference split-half baseline* | | *0.00550* |
+
+Four controls separate method from biology:
+
+| control | offset | what varies |
+|---|---|---|
+| same wings, two groups (Ecuador vs Masaquiza) | **0.00891** | digitizing only |
+| two continents, one group and batch (Calfee California vs Argentina) | **0.00781** | geography only |
+| one group and region, two collection years (Algeria 2018 vs 2024) | **0.01256** | collection and preparation |
+| overlapping subspecies, two groups (reference vs Węgrzynowicz) | **0.02654** | group, subspecies shared |
+
+The smallest offset of all 36 spans two continents. One of the largest is
+between deposits sharing all three subspecies but measured by different
+groups. Every one of the eight largest involves the single deposit measured by
+another group.
+
+The compatibility audit found one deposit of nine using a different landmark
+numbering and two needing reflection — silent failures that produce Procrustes
+distances near the theoretical maximum with no error raised.
 
 ```text
 
