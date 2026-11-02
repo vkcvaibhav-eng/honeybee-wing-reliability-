@@ -95,6 +95,7 @@ scripts/01_find_landmark_map.py    recover the landmark-numbering map
 scripts/02_match_and_error.py      match deposits, estimate error
 scripts/03_known_crosses.py        reference transfer and known-pedigree crosses
 scripts/04_paired_wings.py         independent error estimate from bilateral pairs
+scripts/05_within_colony_variance.py  is within-colony spread comparable across deposits?
 data/README.md                     source DOIs and how to fetch them
 results/                           generated tables and summary
 ```
@@ -119,8 +120,42 @@ python 04_paired_wings.py ../data/DZ-2018-raw-coordinates.csv \
     ../data/RS_21_80-raw-coordinates.csv ../data/DZ-2024-raw-coordinates.csv
 ```
 
-Step 1 must run first; step 2 reads the landmark map it writes. Steps 3 and 4
-are independent of both.
+python 05_within_colony_variance.py
+```
+
+Step 1 must run first; step 2 reads the landmark map it writes. Steps 3, 4 and
+5 are independent of both.
+
+## Within-colony spread does not transfer either
+
+Colony averaging discards the spread of wings within a colony, and that spread
+should carry paternal diversity. Step 5 tests the premise where mating
+structure is known: every Węgrzynowicz colony was inseminated with semen from
+one drone, while Serbian and Algerian queens mated naturally with many, so
+single-drone colonies should be the least variable.
+
+| deposit | mating | colonies | within-colony variance, error-corrected |
+|---|---|---|---|
+| Serbia | natural | 60 | 0.000250 |
+| Algeria 2018 | natural | 46 | 0.000402 |
+| Węgrzynowicz | single-drone | 201 | 0.000436 |
+
+The prediction fails in the opposite direction: single-drone colonies are the
+most variable of the three. Serbia and Algeria 2018 share a mating structure
+and a digitizing group yet differ by 1.6x, which no difference in polyandry
+spans.
+
+Within one deposit the quantity is sound — in Serbia the error floor is 8% of
+within-colony variance. Across deposits it is not comparable, so within-colony
+variance cannot serve as a cross-deposit index of admixture.
+
+Together with step 3 this gives one conclusion. Cross-deposit comparison fails
+for **location**, because the offset between deposit means matches the
+difference between subspecies, and for **scale**, because within-colony
+variances differ by more than mating structure can explain. Within a single
+deposit, both behave.
+
+```text
 
 ```text
 
