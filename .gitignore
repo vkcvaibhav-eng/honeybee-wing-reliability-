@@ -1,0 +1,13 @@
+# raw data from third-party deposits is never committed; see data/README.md
+data/*.xlsx
+data/*.csv
+data/*.tps
+data/*.zip
+data/*.tif
+data/*.png
+!data/README.md
+
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
