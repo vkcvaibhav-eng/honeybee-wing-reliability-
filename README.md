@@ -97,6 +97,7 @@ scripts/03_known_crosses.py        reference transfer and known-pedigree crosses
 scripts/04_paired_wings.py         independent error estimate from bilateral pairs
 scripts/05_within_colony_variance.py  is within-colony spread comparable across deposits?
 scripts/06_offset_matrix.py        pairwise offsets across all nine deposits
+scripts/07_size_and_ancestry.py    offsets expressed as apparent African ancestry
 data/README.md                     source DOIs and how to fetch them
 results/                           generated tables and summary
 ```
@@ -123,6 +124,7 @@ python 04_paired_wings.py ../data/DZ-2018-raw-coordinates.csv \
 
 python 05_within_colony_variance.py
 python 06_offset_matrix.py
+python 07_size_and_ancestry.py
 ```
 
 Step 1 must run first; step 2 reads the landmark map it writes. Steps 3, 4 and
@@ -188,6 +190,51 @@ another group.
 The compatibility audit found one deposit of nine using a different landmark
 numbering and two needing reflection — silent failures that produce Procrustes
 distances near the theoretical maximum with no error raised.
+
+## What an offset costs, in biological units
+
+Procrustes distances are hard to judge. Step 7 converts them using 268 wings
+from Calfee et al., where every bee was sequenced, so shape can be regressed
+on measured African ancestry rather than on reference-based assignment.
+
+Measured A ancestry explains 5.7% of shape variation, at 0.02252 Procrustes
+units per unit ancestry, and the rate is similar on both transects.
+
+Offsets must be **projected** onto that axis first: the median absolute cosine
+between a deposit offset and the ancestry direction is 0.237, against 0.171
+expected by chance in 34 dimensions. Using unprojected lengths overstates the
+result 4.1-fold.
+
+| control | offset | alignment | apparent difference in A ancestry |
+|---|---|---|---|
+| same wings, two groups — pure method | 0.00891 | 0.216 | **9%** |
+| two continents, one group and batch | 0.00780 | 0.889 | **31%** |
+| one group and region, two years | 0.01256 | 0.337 | **19%** |
+| overlapping subspecies, two groups | 0.02654 | 0.199 | **23%** |
+| largest offset in the matrix | 0.03410 | 0.254 | **38%** |
+| *median across all 36 pairs* | | | ***21%*** |
+
+Read the first two rows together. Landmarking alone, on the same physical
+wings, imitates a 9% difference in African ancestry. The genuine ancestry
+difference between the Californian and Argentine hybrid zones registers as
+31%. A typical pair of deposits imitates 21%.
+
+**A methodological offset between deposits can imitate an apparent ancestry
+difference of the same order as the real difference between two continents'
+hybrid zones.**
+
+The alignment result also validates the axis: of all 36 pairs, the most
+aligned with the ancestry direction (0.889) is California against Argentina —
+the one pair that genuinely differs in African ancestry.
+
+### Size cannot be recovered from the Calfee landmark deposit
+
+ImageJ wing length against Procrustes centroid size on the same 268 wings
+correlates at 0.50 pooled, but 0.82 within an imaging session. **The deposit
+records no image resolution**, so centroid size is in pixels on a scale that
+changes between sessions. This is reported as a concordance rather than a
+reliability estimate, since tip-to-base length and the centroid size of 19
+landmarks are different quantities.
 
 ```text
 
