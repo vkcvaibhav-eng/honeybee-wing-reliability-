@@ -249,5 +249,17 @@ w("The single colony that centring fails to recover, P1mm 0489_12, is "
   "for the other lines. The earlier statement that neither identifier is a "
   "pure parental line was wrong.\n")
 
+# per-landmark profile for both samples, for the supplementary table
+rms_all, _ = profile(PA, PB)
+rms_keep, _ = profile(*align(ia[keep], ib[keep]))
+LABEL = [int(x) + 1 for x in perm]
+with open(os.path.join(RESULTS, "per_landmark_both_samples.csv"), "w",
+          newline="") as fh:
+    wr = csv.writer(fh)
+    wr.writerow(["landmark_nawrocka_scheme", "rms_all_642", "rms_retained_608"])
+    for k in range(1, NLM + 1):
+        j = LABEL.index(k)
+        wr.writerow([k, f"{rms_all[j]:.5f}", f"{rms_keep[j]:.5f}"])
+
 open(os.path.join(RESULTS, "review_round3.md"), "w").write("\n".join(out))
 print("\n".join(out))

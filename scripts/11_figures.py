@@ -22,10 +22,20 @@ plt.rcParams.update({"font.family": "serif", "font.serif": ["DejaVu Serif"],
 GREY, DARK, HL = "#9a9a9a", "#2b2b2b", "#b03030"
 
 def save(fig, name):
+    """Vector PDF plus a 600 dpi LZW-compressed TIFF, which is what Springer
+    asks for combination artwork."""
     fig.savefig(os.path.join(FIGS, name + ".pdf"))
-    fig.savefig(os.path.join(FIGS, name + ".tif"), format="tiff", dpi=600)
+    tif = os.path.join(FIGS, name + ".tif")
+    fig.savefig(tif, format="tiff", dpi=600)
     plt.close(fig)
-    print("wrote", name + ".pdf /.tif")
+    from PIL import Image
+    Image.MAX_IMAGE_PIXELS = None
+    im = Image.open(tif)
+    if im.mode not in ("L", "RGB"):
+        im = im.convert("RGB")
+    im.save(tif, format="TIFF", compression="tiff_lzw", dpi=(600, 600))
+    print("wrote", name + ".pdf /.tif",
+          f"({os.path.getsize(tif) / 1e6:.1f} MB)")
 
 # ---------------------------------------------------------------- data
 perm = np.load(os.path.join(RES, "landmark_map.npy"))
