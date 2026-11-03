@@ -63,13 +63,17 @@ p("The result we think most useful to your readers is where the disagreement "
   "landmark convention they follow, and references should be calibrated "
   "against shared specimens before transfer.")
 
+p("Analysis code and all generated results are openly archived at "
+  "https://doi.org/10.5281/zenodo.23906962, and every figure and table in "
+  "the manuscript is reproduced by running the deposited scripts in "
+  "sequence.")
+
 p("The work is entirely a reanalysis of published open deposits, and it "
   "exists only because several groups released their coordinates under "
   "licences permitting reuse. We have been careful to frame it as a "
   "measurement question that the field itself has raised, not as a criticism "
   "of any dataset or group. All analysis code and generated results are "
-  "openly available, and every figure and table in the manuscript is "
-  "reproduced by running the deposited scripts in sequence.")
+  "openly available.")
 
 p("We confirm that this manuscript is original, has not been published "
   "elsewhere, and is not under consideration by another journal. Both "

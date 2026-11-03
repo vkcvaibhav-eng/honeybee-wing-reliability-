@@ -136,6 +136,35 @@ tbl(["Dataset A", "Dataset B", "Distance", "Alignment", "Projected",
       f"{float(r['abs_cosine']):.3f}", f"{float(r['projected']):.5f}",
       f"{100 * float(r['equivalent_delta_A']):.0f}%"] for r in anc])
 
+# ---------------------------------------------------------------- Table S5
+h(1, "Table S5")
+para("Byte-identical duplicate records in the coordinate file of the first "
+     "Ecuadorian deposit. Each duplicate lies within the same image and "
+     "apiary as its original, so no record is shared between apiaries. "
+     "Removing all ten leaves 632 matched candidate pairs and reduces the "
+     "number above three times the median from 34 to 28; the mean "
+     "displacement is unchanged at 0.00875. The analysis in the manuscript "
+     "uses the deposit as published so that it reproduces from the "
+     "deposited file without alteration.")
+rows = []
+for line in open(os.path.join(RES, "duplicate_records.md")):
+    if line.startswith("| ") and "duplicate of" not in line and "---" not in line:
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if len(c) == 4 and c[0].isdigit():
+            rows.append(c)
+tbl(["Record duplicated", "Duplicate record", "Apiary", "Image"], rows)
+
+h(1, "Table S6")
+para("Effect of the duplicate records on every reported estimate.")
+tbl(["Quantity", "As published (663 records)", "Duplicates removed (653)"], [
+    ["Matched candidate pairs", "642", "632"],
+    ["Median Procrustes distance", "0.00964", "0.00960"],
+    ["Pairs above three times the median", "34", "28"],
+    ["Mean displacement", "0.00875", "0.00875"],
+    ["Half mean squared disagreement, all pairs", "0.000110", "0.000105"],
+    ["Half mean squared disagreement, retained", "0.000052", "0.000050"],
+])
+
 # ---------------------------------------------------------------- note
 h(1, "Reproduction")
 para("Scripts run in numerical order from the scripts directory; paths are "
