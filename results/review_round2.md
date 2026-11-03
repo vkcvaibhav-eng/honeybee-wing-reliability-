@@ -62,7 +62,7 @@ The failure of uncorrected transfer on these colonies is insensitive to the numb
 
 ## 5. Full backcross counts
 
-The backcrosses comprise **99** genotype-colony groups across twelve genotypes, not 101 as the revised draft stated.
+The backcrosses comprise **98** genotype-colony groups across twelve genotypes, not 101 as the revised draft stated.
 
 | genotype | majority subspecies | colonies | carnica | caucasia | mellifera |
 |---|---|---|---|---|---|
@@ -72,14 +72,14 @@ The backcrosses comprise **99** genotype-colony groups across twelve genotypes, 
 | BCcmm | mellifera | 5 | 0 | 1 | 4 |
 | BCkcc | caucasia | 5 | 1 | 4 | 0 |
 | BCkck | carnica | 6 | 6 | 0 | 0 |
-| BCkmk | carnica | 17 | 13 | 0 | 4 |
+| BCkmk | carnica | 16 | 12 | 0 | 4 |
 | BCkmm | mellifera | 19 | 0 | 0 | 19 |
 | BCmcc | caucasia | 4 | 1 | 3 | 0 |
 | BCmcm | mellifera | 10 | 1 | 4 | 5 |
 | BCmkk | carnica | 4 | 4 | 0 | 0 |
 | BCmkm | mellifera | 5 | 1 | 0 | 4 |
 
-The cross dataset yields 202 genotype-colony groups from 200 distinct colony identifiers; 2 identifiers appear under more than one genotype label (0489_12: P1kk, P1mm; 0203_13: BCkmk, P1mm). Excluding them changes no reported figure, since neither is a pure parental line.
+The cross dataset yields 198 genotype-colony groups from 198 distinct colony identifiers; 0 identifiers appear under more than one genotype label . The two identifiers found earlier, 0489_12 (P1kk, P1mm) and 0203_13 (P1mm, BCkmk), are now excluded in step 3 before the centring offset is fitted, so none remain here. Refitting with them excluded changed no assignment relative to removing them from the results afterwards, and moved the cross-dataset offset from 0.02470 to 0.02475.
 
 ## 6. Figures
 

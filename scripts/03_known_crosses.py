@@ -52,6 +52,9 @@ LETTER = {"c": "caucasia", "k": "carnica", "m": "mellifera"}
 N_PC = 12
 
 
+CONFLICTING_IDS = {"0489_12", "0203_13"}
+
+
 def load_known_crosses(path):
     """Read the Wegrzynowicz table: 6 metadata columns then x0,y0 ... x18,y18."""
     specs, meta = [], []
@@ -70,8 +73,15 @@ def load_known_crosses(path):
             genotype = row[4].strip()
             if genotype[:2].upper() == "BC":
                 genotype = "BC" + genotype[2:]
+            colony = row[1].strip()
+            # Two colony identifiers appear under two genotype labels each,
+            # which cannot both be right for one instrumentally inseminated
+            # queen. Both are excluded here, before the centring offset is
+            # fitted, rather than filtered out of the results afterwards.
+            if colony in CONFLICTING_IDS:
+                continue
             specs.append(np.asarray(vals, float).reshape(NLM, 2))
-            meta.append({"colony": row[1].strip(), "genotype": genotype})
+            meta.append({"colony": colony, "genotype": genotype})
     return np.stack(specs), meta
 
 

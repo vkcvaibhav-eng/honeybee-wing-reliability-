@@ -6,7 +6,6 @@ P0mm,00105_1,30,mellifera,mellifera,mellifera,mellifera
 P1cc,0051_12,29,caucasia,caucasia,carnica,caucasia
 P1cc,0049_12,27,caucasia,caucasia,mellifera,mellifera
 P1cc,0048_12,25,caucasia,caucasia,mellifera,caucasia
-P1kk,0489_12,41,carnica,carnica,carnica,carnica
 P1kk,0488_12,43,carnica,carnica,carnica,carnica
 P1kk,0486_12,38,carnica,carnica,carnica,carnica
 P1kk,0281_12,41,carnica,carnica,carnica,carnica
@@ -14,11 +13,9 @@ P1kk,0235_12,38,carnica,carnica,carnica,carnica
 P1mm,0302_12,37,mellifera,mellifera,mellifera,mellifera
 P1mm,0287_12,42,mellifera,mellifera,mellifera,mellifera
 P1mm,0286_12,40,mellifera,mellifera,mellifera,mellifera
-P1mm,0203_13,59,mellifera,mellifera,mellifera,mellifera
 P1mm,0140_13,54,mellifera,mellifera,mellifera,mellifera
 P1mm,0138_13,55,mellifera,mellifera,mellifera,mellifera
 P1mm,1206_13,58,mellifera,mellifera,mellifera,mellifera
-P1mm,0489_12,1,mellifera,mellifera,mellifera,caucasia
 F1mk,0116_14,56,mellifera,carnica,mellifera,mellifera
 F1mk,0NN3_14,52,mellifera,carnica,carnica,carnica
 F1mk,0NN2_14,59,mellifera,carnica,mellifera,mellifera
@@ -149,7 +146,6 @@ BCkmk,0211_13,49,carnica,carnica,carnica,carnica
 BCkmk,0207_13,56,carnica,carnica,carnica,carnica
 BCkmk,0206_13,54,carnica,carnica,carnica,carnica
 BCkmk,0204_13,46,carnica,carnica,mellifera,mellifera
-BCkmk,0203_13,25,carnica,carnica,mellifera,carnica
 BCkmk,0195_13,51,carnica,carnica,carnica,carnica
 BCkmk,0192_13,48,carnica,carnica,mellifera,mellifera
 BCkmk,0191_13,52,carnica,carnica,carnica,carnica

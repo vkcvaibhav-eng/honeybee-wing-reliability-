@@ -1,7 +1,7 @@
 # Reference transfer and assignment of known crosses
 
 Reference colonies: {'carnica': 15, 'mellifera': 14, 'caucasia': 12}  
-Cross dataset: 9590 wings, 202 colonies, 24 genotypes
+Cross dataset: 9464 wings, 198 colonies, 24 genotypes
 
 ## Reference internal accuracy
 
@@ -11,7 +11,7 @@ Leave-one-colony-out: **41/41 (100.0%)**. The reference separates its own subspe
 
 | quantity | value |
 |---|---|
-| offset between dataset grand means | **0.02470** |
+| offset between dataset grand means | **0.02475** |
 | reference carnica to caucasia | 0.03216 |
 | reference carnica to mellifera | 0.02831 |
 | reference caucasia to mellifera | 0.01941 |
@@ -23,11 +23,11 @@ The offset sits inside the range of between-subspecies distances (0.01941 to 0.0
 
 | contrast | reference | crosses | cosine |
 |---|---|---|---|
-| carnica to caucasia | 0.03216 | 0.01560 | 0.707 |
-| carnica to mellifera | 0.02831 | 0.02136 | 0.662 |
-| caucasia to mellifera | 0.01941 | 0.01756 | 0.116 |
+| carnica to caucasia | 0.03216 | 0.01623 | 0.708 |
+| carnica to mellifera | 0.02831 | 0.02259 | 0.643 |
+| caucasia to mellifera | 0.01941 | 0.01785 | 0.168 |
 
-Mean cosine **0.495**. Agreement is partial, and the cross dataset is less differentiated than the wild reference. So this is not a pure measurement offset: a measurement difference and genuine divergence of selected breeding lines are confounded here, and these data cannot separate them.
+Mean cosine **0.506**. Agreement is partial, and the cross dataset is less differentiated than the wild reference. So this is not a pure measurement offset: a measurement difference and genuine divergence of selected breeding lines are confounded here, and these data cannot separate them.
 
 ## Known-pure parental lines
 
@@ -38,9 +38,9 @@ Correct assignment of these is not in doubt, so they test transfer.
 | P0cc | caucasia (O) | 2 | C:2 — 0% | O:2 — 100% |
 | P1cc | caucasia (O) | 3 | M:2 C:1 — 0% | O:2 M:1 — 67% |
 | P0kk | carnica (C) | 1 | C:1 — 100% | C:1 — 100% |
-| P1kk | carnica (C) | 5 | C:5 — 100% | C:5 — 100% |
+| P1kk | carnica (C) | 4 | C:4 — 100% | C:4 — 100% |
 | P0mm | mellifera (M) | 1 | M:1 — 100% | M:1 — 100% |
-| P1mm | mellifera (M) | 8 | M:8 — 100% | M:7 O:1 — 88% |
+| P1mm | mellifera (M) | 6 | M:6 — 100% | M:6 — 100% |
 
 Raw transfer misassigns known-pure caucasica entirely. The correction recovers it. Note also that a raw 'correct' call can rest on a margin far below the offset, so it carries no evidential weight.
 
@@ -69,7 +69,7 @@ Across **83 F1 colonies**: 36.1% assigned to the queen's subspecies, 55.4% to th
 | BCcmm | mellifera | 5 | M:4 O:1 | 80% |
 | BCkcc | caucasia | 5 | O:4 C:1 | 80% |
 | BCkck | carnica | 6 | C:6 | 100% |
-| BCkmk | carnica | 17 | C:13 M:4 | 76% |
+| BCkmk | carnica | 16 | C:12 M:4 | 75% |
 | BCkmm | mellifera | 19 | M:19 | 100% |
 | BCmcc | caucasia | 4 | O:3 C:1 | 75% |
 | BCmcm | mellifera | 10 | M:5 O:4 C:1 | 50% |

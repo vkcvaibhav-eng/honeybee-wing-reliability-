@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from scipy.optimize import linear_sum_assignment
 
-REPO = "/home/claude/honeybee-wing-reliability-"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from wingio import (NLM, centroid_size, gpa, load_identifly_csv,
                     load_tps_xlsx, pairwise_procrustes, preshape, rotate_onto)

@@ -286,8 +286,11 @@ w(f"\nThe cross dataset yields {len(rows_a)} genotype-colony groups from "
   "under more than one genotype label "
   + ("(" + "; ".join(f"{k}: {', '.join(v)}" for k, v in dup.items()) + ")"
      if dup else "") +
-  ". Excluding them changes no reported figure, since neither is a pure "
-  "parental line.\n")
+  ". The two identifiers found earlier, 0489_12 (P1kk, P1mm) and 0203_13 "
+  "(P1mm, BCkmk), are now excluded in step 3 before the centring offset is "
+  "fitted, so none remain here. Refitting with them excluded changed no "
+  "assignment relative to removing them from the results afterwards, and "
+  "moved the cross-dataset offset from 0.02470 to 0.02475.\n")
 
 # ===========================================================================
 # figures

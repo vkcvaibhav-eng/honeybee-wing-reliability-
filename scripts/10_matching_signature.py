@@ -19,7 +19,7 @@ import os, re, sys, csv
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 
-REPO = "/home/claude/honeybee-wing-reliability-"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from wingio import (NLM, centroid_size, gpa, load_identifly_csv,
                     load_tps_xlsx, pairwise_procrustes, preshape, rotate_onto)
@@ -160,12 +160,40 @@ for c in both:
     m = colony == c
     cd.append(float(np.sqrt(((PA[m].mean(axis=0) - PB[m].mean(axis=0)) ** 2).sum())))
 cd = np.array(cd)
+# the average of the colony-specific difference VECTORS, then its magnitude,
+# computed from the vectors rather than reusing the pooled-wing value
+cvec = np.stack([(PA[colony == c].mean(axis=0) - PB[colony == c].mean(axis=0))
+                 for c in both])
+colony_mean_disp = float(np.sqrt((cvec.mean(axis=0) ** 2).sum()))
 w(f"- colonies measured by both sets with 3+ wings: **{len(cd)}**")
 w(f"- median magnitude of their colony-specific displacement: "
   f"**{np.median(cd):.5f}**")
-w(f"- magnitude of the average displacement vector over the same colonies: "
-  f"**{disp:.5f}** (a different quantity: the length of a mean, not the "
-  f"median of lengths)\n")
+w(f"- magnitude of the mean of the colony-specific difference vectors: "
+  f"**{colony_mean_disp:.5f}** (computed from the colony vectors, not "
+  f"carried over from the pooled-wing figure of {disp:.5f})\n")
+
+# ---- residual after removing the mean displacement ----
+w("## 2a. Total and residual disagreement\n")
+w("| quantity | all 642 | retained 608 |")
+w("|---|---|---|")
+PAk_, PBk_ = align(ia[keep], ib[keep])
+dk_ = np.sqrt(((PAk_ - PBk_) ** 2).sum(axis=(1, 2)))
+dispk_ = float(np.sqrt(((PAk_ - PBk_).mean(axis=0) ** 2).sum()))
+tot_a = float((d ** 2).sum() / len(d) / 2.0)
+tot_k = float((dk_ ** 2).sum() / len(dk_) / 2.0)
+res_a, res_k = tot_a - disp ** 2 / 2, tot_k - dispk_ ** 2 / 2
+w(f"| half mean squared total disagreement | {tot_a:.6f} | {tot_k:.6f} |")
+w(f"| half the squared mean displacement | {disp**2/2:.7f} | "
+  f"{dispk_**2/2:.7f} |")
+w(f"| residual after removing it | {res_a:.7f} | {res_k:.7f} |")
+w(f"| displacement share of the total | {100*(disp**2/2)/tot_a:.1f}% | "
+  f"{100*(dispk_**2/2)/tot_k:.1f}% |")
+w("")
+w(f"Excluding the 34 reduces total disagreement by "
+  f"{100*(1-tot_k/tot_a):.0f}% and residual disagreement by "
+  f"{100*(1-res_k/res_a):.0f}%. These are two sensitivity scenarios, not "
+  f"bounds: neither establishes a mathematical limit on disagreement under "
+  f"an unknown true matching.\n")
 
 # ---- 3. bootstrap for the excluding-34 estimate ----
 w("## 3. Excluding the 34 disputed matches\n")

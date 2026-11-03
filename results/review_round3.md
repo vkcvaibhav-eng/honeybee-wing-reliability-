@@ -31,7 +31,18 @@ The displacement is the difference between the two grand means, so which wing is
 
 - colonies measured by both sets with 3+ wings: **73**
 - median magnitude of their colony-specific displacement: **0.00909**
-- magnitude of the average displacement vector over the same colonies: **0.00875** (a different quantity: the length of a mean, not the median of lengths)
+- magnitude of the mean of the colony-specific difference vectors: **0.00878** (computed from the colony vectors, not carried over from the pooled-wing figure of 0.00875)
+
+## 2a. Total and residual disagreement
+
+| quantity | all 642 | retained 608 |
+|---|---|---|
+| half mean squared total disagreement | 0.000110 | 0.000052 |
+| half the squared mean displacement | 0.0000383 | 0.0000375 |
+| residual after removing it | 0.0000719 | 0.0000146 |
+| displacement share of the total | 34.8% | 72.0% |
+
+Excluding the 34 reduces total disagreement by 53% and residual disagreement by 80%. These are two sensitivity scenarios, not bounds: neither establishes a mathematical limit on disagreement under an unknown true matching.
 
 ## 3. Excluding the 34 disputed matches
 
@@ -45,18 +56,14 @@ Both appear under two genotype labels. The wing counts identify which entry is s
 
 | colony | genotype | wings | raw | centred |
 |---|---|---|---|---|
-| 0489_12 | P1kk | 41 | carnica | carnica |
-| 0203_13 | P1mm | 59 | mellifera | mellifera |
-| 0489_12 | P1mm | 1 | mellifera | caucasia |
-| 0203_13 | BCkmk | 25 | mellifera | carnica |
 
 | genotype | all entries | excluding the two |
 |---|---|---|
 | P0cc | 0/2 raw, 2/2 centred | 0/2 raw, 2/2 centred |
 | P1cc | 0/3 raw, 2/3 centred | 0/3 raw, 2/3 centred |
 | P0kk | 1/1 raw, 1/1 centred | 1/1 raw, 1/1 centred |
-| P1kk | 5/5 raw, 5/5 centred | 4/4 raw, 4/4 centred |
+| P1kk | 4/4 raw, 4/4 centred | 4/4 raw, 4/4 centred |
 | P0mm | 1/1 raw, 1/1 centred | 1/1 raw, 1/1 centred |
-| P1mm | 8/8 raw, 7/8 centred | 6/6 raw, 6/6 centred |
+| P1mm | 6/6 raw, 6/6 centred | 6/6 raw, 6/6 centred |
 
 The single colony that centring fails to recover, P1mm 0489_12, is represented by one wing and also appears as P1kk with 41 wings. Excluded, the centred pure-line result is 4 of 5 caucasica colonies and 12 of 12 for the other lines. The earlier statement that neither identifier is a pure parental line was wrong.
