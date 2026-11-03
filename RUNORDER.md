@@ -14,7 +14,8 @@ location, so the repository can sit anywhere.
 08_corrected_estimates.py
 09_review_round2.py
 10_matching_signature.py
-11_figures.py              <- must run last; it writes figures/Fig1-4 as PDF and 600 dpi TIFF
+11_figures.py
+12_duplicate_records.py    <- sensitivity check on the Ecuadorian deposit
 ```
 
 Step 11 is the only step that writes figures. Earlier steps write result
