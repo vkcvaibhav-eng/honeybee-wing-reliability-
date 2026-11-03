@@ -29,6 +29,19 @@ The offset sits inside the range of between-subspecies distances (0.01941 to 0.0
 
 Mean cosine **0.506**. Agreement is partial, and the cross dataset is less differentiated than the wild reference. So this is not a pure measurement offset: a measurement difference and genuine divergence of selected breeding lines are confounded here, and these data cannot separate them.
 
+## Margins for the pure lines
+
+Distance from each genotype's colony means to the two nearest reference centroids, in Procrustes units, on the colonies retained after the exclusions described in the Methods.
+
+| genotype | colonies | nearest centroid | distance | second | distance | margin |
+|---|---|---|---|---|---|---|
+| P0cc | 2 | M | 0.02869 | O | 0.03325 | 0.00455 |
+| P1cc | 3 | M | 0.02395 | O | 0.02851 | 0.00456 |
+| P0kk | 1 | C | 0.02779 | M | 0.03519 | 0.00740 |
+| P1kk | 4 | C | 0.02903 | M | 0.02977 | 0.00074 |
+| P0mm | 1 | M | 0.02376 | O | 0.02967 | 0.00591 |
+| P1mm | 6 | M | 0.02448 | O | 0.03133 | 0.00684 |
+
 ## Known-pure parental lines
 
 Correct assignment of these is not in doubt, so they test transfer.

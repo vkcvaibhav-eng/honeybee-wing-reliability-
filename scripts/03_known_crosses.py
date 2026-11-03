@@ -253,6 +253,25 @@ def main():
         c = Counter(pred[i] for i in idx)
         return len(idx), c, " ".join(f"{SUBSP[k]}:{v}" for k, v in c.most_common())
 
+    # margins of the apparently correct calls, on the retained colonies
+    w("## Margins for the pure lines\n")
+    w("Distance from each genotype's colony means to the two nearest "
+      "reference centroids, in Procrustes units, on the colonies retained "
+      "after the exclusions described in the Methods.\n")
+    w("| genotype | colonies | nearest centroid | distance | second | "
+      "distance | margin |\n|---|---|---|---|---|---|---|")
+    for g in ("P0cc", "P1cc", "P0kk", "P1kk", "P0mm", "P1mm"):
+        idx = [i for i, x in enumerate(geno) if x == g]
+        if not idx:
+            continue
+        mu = Wm[idx].mean(axis=0)
+        ds = sorted(((float(np.sqrt(((mu - centroid[k]) ** 2).sum())), k)
+                     for k in centroid), key=lambda z: z[0])
+        margin = ds[1][0] - ds[0][0]
+        w(f"| {g} | {len(idx)} | {SUBSP[ds[0][1]]} | {ds[0][0]:.5f} | "
+          f"{SUBSP[ds[1][1]]} | {ds[1][0]:.5f} | {margin:.5f} |")
+    w("")
+
     w("## Known-pure parental lines\n")
     w("Correct assignment of these is not in doubt, so they test transfer.\n")
     w("| genotype | expected | colonies | raw | offset-corrected |\n|---|---|---|---|---|")
