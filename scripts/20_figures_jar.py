@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from scipy.optimize import linear_sum_assignment
 
-REPO = "/home/claude/honeybee-wing-reliability-"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from wingio import (NLM, centroid_size, gpa, load_identifly_csv,
                     load_tps_xlsx, pairwise_procrustes, preshape, rotate_onto)
@@ -72,7 +72,7 @@ print("writing figures:")
 diff = PA[keep] - PB[keep]
 rms = np.sqrt((diff ** 2).sum(axis=2).mean(axis=0))
 order = np.argsort(LAB)
-fig, ax = plt.subplots(figsize=(5.2, 2.3))
+fig, ax = plt.subplots(figsize=(5.91, 2.6))
 ax.bar(range(1, 20), rms[order],
        color=[HL if LAB[i] in (7, 14) else GREY for i in order],
        edgecolor="white", lw=0.4)
@@ -83,7 +83,7 @@ ax.set_xticks(range(1, 20))
 ax.set_xlabel("Landmark")
 ax.set_ylabel("RMS disagreement\n(units of centroid size)")
 ax.spines[["top", "right"]].set_visible(False)
-save(fig, "Figure1", 300)
+save(fig, "Figure1", 400)
 
 # ===================================== Figure 2  displacement vs separation
 Pfull, _ = gpa(B)
@@ -93,7 +93,7 @@ means = np.stack([Pfull[col == c].mean(axis=0) for c in sorted(set(col))
                   if c != "NA" and (col == c).sum() >= 3])
 mp, _ = preshape(means)
 pd_ = pairwise_procrustes(mp, mp)[np.triu_indices(len(means), 1)]
-fig, ax = plt.subplots(figsize=(5.2, 2.3))
+fig, ax = plt.subplots(figsize=(5.91, 2.6))
 ax.hist(pd_, bins=40, color=GREY, edgecolor="white", lw=0.3)
 ax.axvspan(0.00844, 0.00916, color=HL, alpha=0.22, lw=0)
 ax.axvline(disp, color=HL, lw=1.3)
@@ -103,7 +103,7 @@ ax.set_xlim(0.004, pd_.max() * 1.02)
 ax.set_xlabel("Procrustes distance between colony means")
 ax.set_ylabel("Colony pairs")
 ax.spines[["top", "right"]].set_visible(False)
-save(fig, "Figure2", 300)
+save(fig, "Figure2", 400)
 
 # ========================================== Figure 3  assignment, 2 panels
 kr = [x for x in csv.DictReader(
@@ -116,7 +116,7 @@ GRP = [("Pure lines", tuple(g for g in {x["genotype"] for x in kr}
                             if g.startswith("F1"))),
        ("Backcrosses", tuple(g for g in {x["genotype"] for x in kr}
                              if g.startswith("BC")))]
-fig, axes = plt.subplots(1, 2, figsize=(5.4, 2.4), sharey=True)
+fig, axes = plt.subplots(1, 2, figsize=(5.91, 2.6), sharey=True)
 for ax, key, ttl in zip(axes, ("assigned_raw", "assigned_corrected"),
                         ("(a) Uncorrected", "(b) After centring")):
     M, labs = [], []
@@ -141,10 +141,10 @@ for ax, key, ttl in zip(axes, ("assigned_raw", "assigned_corrected"),
     ax.tick_params(length=0)
     for sp in ax.spines.values():
         sp.set_visible(False)
-save(fig, "Figure3", 600)
+save(fig, "Figure3", 700)
 
 # ============================== Supplementary figure S1  full distribution
-fig = plt.figure(figsize=(5.2, 2.3))
+fig = plt.figure(figsize=(5.91, 2.6))
 gs = GridSpec(1, 2, width_ratios=[2.2, 1], wspace=0.34, figure=fig)
 ax = fig.add_subplot(gs[0])
 ax.hist(d, bins=np.linspace(0, 0.04, 61), color=GREY, edgecolor="white",
@@ -168,7 +168,7 @@ ax2.text(0.97, 0.95, "(b)", transform=ax2.transAxes, ha="right", va="top",
          fontsize=9)
 for a_ in (ax, ax2):
     a_.spines[["top", "right"]].set_visible(False)
-save(fig, "FigureS1", 300)
+save(fig, "FigureS1", 400)
 
 print(f"\nkey values: LM7 {rms[L7]:.5f}  LM14 {rms[L14]:.5f}  "
       f"others {oth:.5f}  displacement {disp:.5f}  "

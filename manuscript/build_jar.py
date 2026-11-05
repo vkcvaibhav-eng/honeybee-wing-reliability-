@@ -140,7 +140,7 @@ para()
 para("Corresponding author: V. K. Chaudhari, vkcvaibhav@gmail.com")
 para("ORCID: V. K. Chaudhari https://orcid.org/0000-0001-9688-0134")
 para()
-para("Word count: 4,870 including tables, references and figure captions")
+para("Word count: 5,200 including tables, references and figure captions")
 para("Display items: three tables and three figures")
 br()
 
@@ -149,24 +149,25 @@ h(1, "Abstract")
 rich([("Wing geometric morphometrics identifies honey bee (", N),
       ("Apis mellifera", I),
       (" L.) subspecies by comparing landmark coordinates against a "
-       "reference dataset, a procedure that assumes a reference produced in "
-       "one laboratory applies to wings landmarked in another. That "
-       "assumption has not been tested. We tested it using the only case in "
-       "the public record in which two groups independently landmarked the "
-       "same wing images, and asked whether any disagreement between them "
-       "is spread across the configuration, as operator variation would "
-       "predict, or concentrated at the two landmarks that published "
-       "versions of the configuration define differently. Across 642 "
-       "matched candidate pairs, landmarks 7 and 14 carried about 94% of "
-       "the squared mean displacement, against roughly 10% expected under "
-       "an even spread, and their disagreement was six times the median of "
-       "the other seventeen. The disagreement behaved as a constant "
-       "displacement rather than random scatter: 0.00875 Procrustes units "
-       "(95% CI 0.00844 to 0.00916), unchanged under random re-pairing of "
-       "the wings, and 0.44 times the median distance between colony means, "
-       "so averaging more wings per colony does not remove it. A classifier "
-       "that separated its own subspecies in 41 of 41 colonies assigned "
-       "zero or one of five colonies of known pure ", N),
+       "reference dataset, a procedure that assumes a reference produced "
+       "in one laboratory applies to wings landmarked in another. "
+       "Measurement error within one operator has been quantified; "
+       "disagreement between independent groups has not. We measured it "
+       "using the only case in the public record in which two groups "
+       "independently landmarked the same wing images, asking whether "
+       "their disagreement is diffuse across the configuration or "
+       "localised. Across 642 matched candidate pairs, landmarks 7 and 14 "
+       "carried about 94% of the squared mean displacement, and their "
+       "disagreement was six times the median of the other seventeen. "
+       "These are the two landmarks that published versions of the "
+       "configuration define differently. The disagreement has two parts: "
+       "a mean displacement of 0.00875 Procrustes units (95% CI 0.00844 to "
+       "0.00916), which is 34.8% of the total and which averaging wings "
+       "within a colony does not remove, and residual scatter accounting "
+       "for the rest. The displacement is 0.44 times the median distance "
+       "between colony means. A classifier that separated its own "
+       "subspecies in 41 of 41 colonies assigned zero or one of five "
+       "colonies of known pure ", N),
       ("A. m. caucasica", I),
       (" correctly when applied to a dataset produced elsewhere. One of "
        "nine deposits numbered the same landmarks in a different order "
@@ -222,20 +223,28 @@ para("There is a specific reason to expect that two groups might not place "
      "version and a group working from the other would disagree there, and "
      "in few other places. Deposits do not record which version their "
      "operators used.")
-para("We located one case in the public record in which two groups "
-     "independently landmarked the same wing images, and used it to test "
-     "three predictions. First, if the groups worked to different versions "
-     "of the configuration, disagreement should concentrate at landmarks 7 "
-     "and 14 and be small elsewhere; if it instead reflects ordinary "
-     "operator variation, it should be spread across the nineteen points. "
-     "Second, if the disagreement is a constant displacement rather than "
-     "random scatter, it should be unchanged when the wings are re-paired "
-     "at random, and should not diminish as more wings are averaged into a "
-     "colony mean. Third, if a displacement of that size matters in "
-     "practice, a classifier trained on one dataset should misassign "
-     "colonies of known subspecies in a dataset produced elsewhere. The "
-     "analysis is possible only because the groups concerned published "
-     "their coordinates openly.")
+para("Measurement error in honey bee wing landmarking has been quantified "
+     "before, but within a single laboratory. Machlowska et al. (2025) "
+     "estimated it on 1,049 wings from thirty Georgian colonies, all "
+     "measured by one person, by adjusting the coordinates three times "
+     "using template matching. That design measures the repeatability of "
+     "one operator and one pipeline, which is the relevant quantity when a "
+     "single group measures everything. It cannot measure what happens "
+     "when a reference built by one group meets wings landmarked by "
+     "another, because that requires two groups and the same wings.")
+para("We located one such case in the public record and used it to ask one "
+     "question with two possible answers. If the disagreement between two "
+     "groups arises from a definable difference in where a numbered "
+     "landmark is placed, it should be localised at the landmarks "
+     "concerned; if it arises from general imprecision in digitising, it "
+     "should be spread across the configuration. The answer matters "
+     "either way, because a localised difference can be documented and "
+     "corrected whereas a diffuse one cannot. We then quantified the "
+     "disagreement, separated the part of it that survives averaging from "
+     "the part that does not, and tested what a displacement of that size "
+     "does to a reference classifier applied across datasets. The analysis "
+     "is possible only because the groups concerned published their "
+     "coordinates openly.")
 br()
 
 # ================================================= materials and methods
@@ -357,12 +366,13 @@ para("Transfer was tested on the instrumentally inseminated material of "
      "excluded before the centring offset was fitted.")
 
 h(2, "Software and reproducibility")
-para("Analysis is in thirteen Python files: a shared module and twelve "
-     "numbered scripts run in sequence, using NumPy, SciPy, pandas, "
-     "openpyxl and Matplotlib. Each script writes its own result tables, "
-     "and every figure and table quoted here is reproduced by running them "
-     "in order. Raw datasets are not redistributed; the repository lists "
-     "every source by DOI.")
+para("Analysis is in fourteen Python files: a shared module, twelve "
+     "numbered scripts run in order, and a figure script run last, using "
+     "NumPy, SciPy, pandas, openpyxl, Pillow and Matplotlib. Paths are "
+     "derived from each script's own location. Each script writes its own "
+     "result tables, and every figure and table quoted here is reproduced "
+     "by running them in sequence. Raw datasets are not redistributed; "
+     "the repository lists every source by DOI.")
 br()
 
 # ================================================================ results
@@ -378,14 +388,16 @@ para("Of the nine datasets, one numbers the same 19 anatomical points in a "
      "warning. The numbering was recovered by the rotation sweep described "
      "above, and all results below use the corrected correspondence.")
 
-h(2, "Prediction 1: the disagreement is concentrated at two landmarks")
+h(2, "The disagreement is concentrated at two landmarks")
 para("Of 663 and 726 records, 642 formed matched candidate pairs, their "
      "centroid sizes correlating at r = 1.0000. The disagreement between "
      "the two measurement sets is not spread across the configuration. "
      "Landmarks 7 and 14 carry 94.0% of the squared mean displacement on "
      "all 642 pairs and 94.3% on the 608 retained after removing the 34 "
-     "largest discrepancies, against 10.5% expected if it were divided "
-     "evenly across nineteen points. Their root-mean-square disagreement "
+     "largest discrepancies. Two of nineteen landmarks would carry 10.5% "
+     "under an equal division, which is an arithmetic benchmark rather "
+     "than a model of how digitising error is distributed. Their "
+     "root-mean-square disagreement "
      "on the retained pairs, 0.00732 and 0.00580, is 6.4 times the median "
      "of 0.00102 across the other seventeen (Figure 1).")
 figure(1,
@@ -401,30 +413,44 @@ figure(1,
 para("The landmark-matching step reached the same two landmarks "
      "independently: residuals between the two generalised Procrustes mean "
      "shapes were 0.00654 at landmark 7 and 0.00567 at landmark 14, "
-     "against 0.00241 or less at all seventeen others. The prediction is "
-     "met. We present the convention difference as a plausible explanation "
-     "rather than a demonstrated one, because neither deposit records "
-     "which version of the configuration its operators worked from, and an "
-     "operator effect concentrated at the two least determinate junctions "
-     "would look similar. What the localisation does establish is that the "
-     "displacement is not diffuse digitising noise, and that a correction, "
-     "if one is wanted, has a specific target.")
+     "against 0.00241 or less at all seventeen others. The disagreement is "
+     "therefore localised rather than diffuse. Two explanations predict "
+     "that pattern and these data cannot separate them. The two groups may "
+     "have worked to different versions of the configuration, landmarks 7 "
+     "and 14 being where the published versions differ; or digitising "
+     "error may be concentrated at those two junctions because they are "
+     "the hardest to locate. Deposits record neither the convention used "
+     "nor per-landmark repeatability, so the question stays open. What the "
+     "localisation does establish is that the displacement is not spread "
+     "across the configuration, and that a correction, if one is wanted, "
+     "has a specific target.")
 
-h(2, "Prediction 2: the disagreement is a displacement, not scatter")
+h(2, "Part of the disagreement survives averaging")
 para("Half the mean squared disagreement between the two sets was 0.000110 "
      "(95% CI 0.000074 to 0.000155). Of that, a mean displacement of "
      "0.00875 Procrustes units (95% CI 0.00844 to 0.00916) accounts for "
      "34.8%, the remainder being residual disagreement that is not "
      "demonstrably independent noise (Table 2).")
+para("The two components behave differently. Residual disagreement is the "
+     "larger share, 65.2% of the total, and it shrinks as wings are "
+     "averaged within a colony in the ordinary way. The displacement does "
+     "not: a colony mean computed from more wings converges on the "
+     "population mean difference, which is the displacement itself. "
+     "Sampling more bees per colony therefore buys precision against the "
+     "residual term and nothing against the displacement.")
 para("Recomputing the displacement under 200 random re-pairings of the same "
-     "wings returned 0.00875 each time, to five decimal places, as a "
-     "difference of grand means must. Removing the 34 largest "
-     "discrepancies moves it from 0.00875 to 0.00866, a change of 1.1%, "
-     "while total disagreement falls by 53% and residual disagreement by "
-     "80%. The central estimate therefore does not rest on the matching; "
-     "the residual term does, and both scenarios are reported without "
-     "preference. Neither is a bound: with the true matching unknown, they "
-     "do not limit the disagreement mathematically.")
+     "wings returned 0.00875 each time, to five decimal places. This is a "
+     "property of the estimator rather than evidence about the data: the "
+     "mean difference equals the difference between the two grand means, "
+     "so within a fixed pair of selected sets it cannot depend on the "
+     "pairing, whatever the specimen-level disagreement looks like. It is "
+     "reported because it shows the central estimate is robust to the "
+     "matching step. The residual term is not: removing the 34 largest "
+     "discrepancies moves the displacement from 0.00875 to 0.00866, a "
+     "change of 1.1%, while total disagreement falls by 53% and residual "
+     "disagreement by 80%. Both scenarios are reported without preference, "
+     "and neither is a bound, since with the true matching unknown they do "
+     "not limit the disagreement mathematically.")
 
 table("Table 2",
       "Disagreement between two independent measurements of the same "
@@ -481,7 +507,7 @@ figure(2,
        "distances share colonies and are not independent: each colony "
        "enters 73 of them.")
 
-h(2, "Prediction 3: reference transfer fails without calibration")
+h(2, "A reference classifier does not transfer without calibration")
 para("The reference separates its own subspecies in 41 of 41 colonies by "
      "leave-one-colony-out. That shows these three subspecies are "
      "separable within that collection; it does not establish that the "
@@ -542,8 +568,10 @@ para("The image archive of the original Ecuadorian deposit holds 75 files "
      "are byte-identical copies of other records: one on image R2C2 of "
      "apiary 13, and a block of nine on image JSC1 of apiary 6. Every "
      "duplicate lies within the same image and apiary as its original, so "
-     "no record is shared between apiaries and comparisons between "
-     "colonies cannot be affected by them. Removing the ten leaves 632 "
+     "no record is shared between apiaries, although a repeated record "
+     "still changes the weighting of its own apiary mean. The sensitivity "
+     "analysis is what bounds the consequence. Removing the ten leaves "
+     "632 "
      "matched pairs and reduces the number above three times the median "
      "from 34 to 28, because two identical records compete for distinct "
      "partners and one is necessarily matched to the wrong wing. The mean "
@@ -554,42 +582,42 @@ br()
 # ============================================================= discussion
 h(1, "Discussion")
 para("Two groups landmarking the same honey bee wings disagree by 0.00875 "
-     "Procrustes units, and that disagreement is a displacement rather "
-     "than scatter: it is unchanged when the wings are re-paired, and "
-     "being constant it does not shrink as more wings are averaged into a "
-     "colony mean. The principle that a systematic component survives "
-     "averaging is not new, and Collyer and Adams (2024) set out a general "
+     "Procrustes units in the mean, with residual scatter accounting for "
+     "the larger share of the total. The displacement is the part that "
+     "matters operationally, because averaging wings within a colony "
+     "removes the residual and not the displacement. Neither the principle "
+     "nor the general method is new: Collyer and Adams (2024) set out the "
      "framework for separating systematic from random measurement error in "
-     "landmark data. What has not been available until now is a "
-     "measurement of its size in honey bee wing morphometrics, because "
-     "that requires the same wings to be landmarked twice by different "
-     "groups and the result to be published. The size matters: 0.44 times "
-     "the median distance between colony means is not a rounding error in "
-     "a method whose purpose is to resolve differences of that order.")
+     "landmark data, and Machlowska et al. (2025) applied it to honey bee "
+     "wings, estimating error within one operator on 1,049 Georgian wings. "
+     "What this study adds is the between-group quantity, which a "
+     "single-operator design cannot produce, together with its location. "
+     "The size matters: 0.44 times the median distance between colony "
+     "means is not a rounding error in a method whose purpose is to "
+     "resolve differences of that order.")
 para("The localisation is the more useful result. Had the disagreement been "
-     "spread evenly across the nineteen landmarks, the only available "
-     "advice would have been the general one, to remeasure everything in "
-     "one laboratory. Instead 94% of it sits on two points, and those two "
+     "spread across the nineteen landmarks, the only available advice "
+     "would have been the general one, to remeasure everything in one "
+     "laboratory. Instead 94% of it sits on two points, and those two "
      "points are the ones Nawrocka et al. (2018) record as having been "
      "moved from the convention of Gerula et al. (2009) to agree with "
      "Ruttner (1988). We do not claim this proves the two groups used "
      "different versions, and the data cannot show it, since neither "
-     "deposit records the version used. An operator effect concentrated at "
-     "the two least determinate vein junctions would produce a similar "
+     "deposit records the version used; digitising error concentrated at "
+     "the two least determinate vein junctions would produce the same "
      "pattern. Either way the practical consequence is the same and the "
      "remedy is cheap: the information needed to tell these explanations "
      "apart is a single line of metadata that deposits do not currently "
      "carry.")
 para("The transfer failure should be read narrowly. The evidence is five "
      "colonies of known pure A. m. caucasica, not the whole cross dataset, "
-     "and the other pure lines transferred correctly. But those five are "
-     "the only colonies in the public record whose subspecies is known by "
-     "pedigree rather than by the morphometric method under test, so they "
-     "are the only available check on transfer, and a method that "
-     "separates its own subspecies in 41 of 41 colonies should not fail on "
-     "them. The narrow margins behind the apparently correct calls, a "
-     "twelfth of the measurement displacement, suggest those successes are "
-     "not reassuring either.")
+     "and the other twelve pure-line colonies transferred correctly. All "
+     "seventeen are known by pedigree rather than by the morphometric "
+     "method under test, which is what makes them a usable check on "
+     "transfer, and a method that separates its own subspecies in 41 of "
+     "41 colonies should not fail on any of them. The narrow margins "
+     "behind the apparently correct calls, a twelfth of the measurement "
+     "displacement, suggest those successes are not reassuring either.")
 para("Several limitations bound these conclusions. Dataset, population and "
      "landmarking group are confounded throughout the public record: apart "
      "from the Ecuadorian pair, no two groups have measured the same "
@@ -611,13 +639,20 @@ br()
 
 # ============================================================ conclusions
 h(1, "Conclusions")
-para("A reference dataset built in one laboratory did not transfer to wings "
-     "landmarked in another without calibration, and the disagreement "
-     "responsible was concentrated at the two landmarks whose definition "
-     "differs between published versions of the configuration. Meixner et "
-     "al. (2013) and Bouga et al. (2011) recommended consistency of "
-     "methods between laboratories; these results give that recommendation "
-     "a magnitude and, more usefully, a specific target.")
+para("Two findings are reported here, and they are complementary rather "
+     "than linked by evidence. Two groups landmarking the same wings "
+     "disagreed by a mean displacement of 0.00875 Procrustes units, 94% of "
+     "it concentrated at the two landmarks whose definition differs "
+     "between published versions of the configuration. Separately, a "
+     "reference classifier trained on one collection failed on colonies of "
+     "known parentage in another. The first comes from the Ecuadorian "
+     "pair, the second from the reference and cross datasets; nothing here "
+     "shows that the Ecuadorian displacement, or those two landmarks, "
+     "caused that classification failure. What the two together show is "
+     "that between-group disagreement in this method is large enough to "
+     "matter and specific enough to document. Meixner et al. (2013) and "
+     "Bouga et al. (2011) recommended consistency of methods between "
+     "laboratories; these results give that recommendation a magnitude.")
 para("Four items of metadata would make the difference, none of them "
      "costly. Deposits of wing landmark coordinates should record: the "
      "version of the landmark convention followed, with its citation, and "
@@ -628,9 +663,12 @@ para("Four items of metadata would make the difference, none of them "
      "including whether they were cropped or rescaled from another "
      "deposit. Where a reference is to be applied to wings landmarked "
      "elsewhere, a small set of shared specimens measured by both groups "
-     "would allow the displacement to be estimated and removed, which is "
-     "the calibration these data show to be necessary and which no "
-     "published study of honey bee wings currently provides.")
+     "would allow the displacement to be estimated. Whether removing it "
+     "restores correct assignment is a further question that these data "
+     "cannot answer: the centring applied here is a sensitivity analysis, "
+     "not a validated correction, and no calibration procedure for honey "
+     "bee wing references has yet been demonstrated to work on held-out "
+     "colonies.")
 br()
 
 # =========================================================== declarations

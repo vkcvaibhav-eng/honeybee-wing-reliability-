@@ -167,11 +167,14 @@ tbl(["Quantity", "As published (663 records)", "Duplicates removed (653)"], [
 
 # ---------------------------------------------------------------- note
 h(1, "Reproduction")
-para("Scripts run in numerical order from the scripts directory; paths are "
-     "derived from the script location. Step 11 writes the figures and must "
-     "run last. Dependencies are NumPy, SciPy, pandas, openpyxl, Pillow and "
+para("The repository holds fourteen Python files: a shared module, twelve "
+     "numbered analysis scripts run in order from the scripts directory, "
+     "and a figure script, 20_figures_jar.py, which produces the figures "
+     "for this manuscript and is run last. Paths are derived from each "
+     "script's own location, so the repository can sit anywhere. "
+     "Dependencies are NumPy, SciPy, pandas, openpyxl, Pillow and "
      "Matplotlib. Raw datasets are not redistributed: every source is listed "
-     "with its DOI in Table X of the manuscript.")
+     "with its DOI in Table S7 below.")
 
 h(1, "Table S7")
 para("Published deposits analysed, with DOIs. Raw data are not "
@@ -200,7 +203,7 @@ pp.add_run().add_picture(
     width=Cm(15))
 para("Distribution of Procrustes distances between the two measurements of "
      "each matched candidate pair (n = 642). (a) Linear scale to 0.04. (b) "
-     "The complete distribution on a logarithmic scale, including the four "
+     "The complete distribution on a logarithmic scale, including the eight "
      "distances above 0.04 and the maximum of 0.134. The solid line is the "
      "median of 0.00964; the dashed line is three times the median, the "
      "cut used for the sensitivity analysis, above which 34 pairs fall.")
