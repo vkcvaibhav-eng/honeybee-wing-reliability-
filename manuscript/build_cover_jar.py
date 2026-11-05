@@ -64,11 +64,13 @@ p("The study asks one question with two possible answers rather than "
   "that Nawrocka et al. (2018) record as having been moved from the "
   "convention of Gerula et al. (2009). We then quantified the "
   "disagreement, separating the mean displacement of 0.00875 Procrustes "
-  "units, which averaging wings within a colony does not remove, from the "
-  "residual scatter, which it does; and we tested what a displacement of "
-  "that size does to a reference classifier, which assigned zero or one "
-  "of five colonies of known pure Apis mellifera caucasica correctly "
-  "across 6 to 20 principal components.")
+  "units, which averaging wings within a colony cannot remove, from the "
+  "residual term, of which averaging reduces whatever part is "
+  "independent and zero-mean. Separately, we assessed how a reference "
+  "classifier built on one collection performs on colonies of known "
+  "parentage in another: it assigned zero or one of five colonies of "
+  "known pure Apis mellifera caucasica correctly across 6 to 20 principal "
+  "components.")
 
 p("We are careful about what this does and does not establish. Two "
   "explanations predict the localisation we see, a convention difference "

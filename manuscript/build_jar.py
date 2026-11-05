@@ -140,7 +140,7 @@ para()
 para("Corresponding author: V. K. Chaudhari, vkcvaibhav@gmail.com")
 para("ORCID: V. K. Chaudhari https://orcid.org/0000-0001-9688-0134")
 para()
-para("Word count: 5,200 including tables, references and figure captions")
+para("Word count: 5,250 including tables, references and figure captions")
 para("Display items: three tables and three figures")
 br()
 
@@ -240,9 +240,11 @@ para("We located one such case in the public record and used it to ask one "
      "should be spread across the configuration. The answer matters "
      "either way, because a localised difference can be documented and "
      "corrected whereas a diffuse one cannot. We then quantified the "
-     "disagreement, separated the part of it that survives averaging from "
-     "the part that does not, and tested what a displacement of that size "
-     "does to a reference classifier applied across datasets. The analysis "
+     "disagreement and separated the mean displacement, which averaging "
+     "wings within a colony cannot remove, from the residual term. "
+     "Separately, we assessed how a reference classifier built on one "
+     "collection performs on colonies of known parentage in another. The "
+     "analysis "
      "is possible only because the groups concerned published their "
      "coordinates openly.")
 br()
@@ -301,7 +303,8 @@ para("Landmark numbering and handedness were verified for every dataset "
      "each angle, with and without reflection, taking the lowest cost. "
      "This establishes computational compatibility only. It does not "
      "establish that two sources place a numbered point at the same "
-     "anatomical feature, which is what the first prediction tests.")
+     "anatomical feature, which is what the per-landmark comparison below "
+     "addresses.")
 
 h(2, "Procrustes protocol")
 para("Configurations were centred, scaled to unit centroid size and rotated "
@@ -324,8 +327,8 @@ para("Two consequences are separated. The mean displacement between the "
      "sets is the difference between their grand means over the same "
      "wings, so within a fixed pair of selected sets it carries no "
      "information about which wing is paired with which; this was "
-     "confirmed by recomputing it under 200 random re-pairings, and is the "
-     "second prediction. The residual scatter does depend on the pairing, "
+     "confirmed by recomputing it under 200 random re-pairings. The "
+     "residual scatter does depend on the pairing, "
      "and is reported across the matching decision as two sensitivity "
      "scenarios rather than as a point estimate. Both coordinate files "
      "were also checked for repeated records by comparing raw "
@@ -431,13 +434,17 @@ para("Half the mean squared disagreement between the two sets was 0.000110 "
      "0.00875 Procrustes units (95% CI 0.00844 to 0.00916) accounts for "
      "34.8%, the remainder being residual disagreement that is not "
      "demonstrably independent noise (Table 2).")
-para("The two components behave differently. Residual disagreement is the "
-     "larger share, 65.2% of the total, and it shrinks as wings are "
-     "averaged within a colony in the ordinary way. The displacement does "
-     "not: a colony mean computed from more wings converges on the "
-     "population mean difference, which is the displacement itself. "
-     "Sampling more bees per colony therefore buys precision against the "
-     "residual term and nothing against the displacement.")
+para("The two components behave differently under averaging. The "
+     "displacement does not diminish: a colony mean computed from more "
+     "wings converges on the population mean difference, which is the "
+     "displacement itself. The residual term, 65.2% of the total, is the "
+     "larger share, and averaging reduces whatever part of it is "
+     "independent and zero-mean across wings. How much qualifies is not "
+     "known here, because the residual may also contain "
+     "specimen-dependent bias, colony effects or incorrect matches, none "
+     "of which average away. Sampling more bees per colony therefore buys "
+     "some precision against the residual term and none against the "
+     "displacement.")
 para("Recomputing the displacement under 200 random re-pairings of the same "
      "wings returned 0.00875 each time, to five decimal places. This is a "
      "property of the estimator rather than evidence about the data: the "
@@ -494,8 +501,9 @@ para("The displacement is the consequential part, because it does not "
      "constant displacement predicts; the median magnitude of the "
      "colony-specific displacements is 0.00909. Whether a displacement of "
      "this size defeats a particular classifier depends on its direction "
-     "relative to the discriminant axes and not on this ratio alone, which "
-     "is why the third prediction was tested directly.")
+     "relative to the discriminant axes and not on this ratio alone. "
+     "Classifier performance across datasets is assessed separately "
+     "below.")
 figure(2,
        "The displacement between the two measurement sets, with its "
        "bootstrap interval shaded, against the distances between colony "
@@ -507,7 +515,7 @@ figure(2,
        "distances share colonies and are not independent: each colony "
        "enters 73 of them.")
 
-h(2, "A reference classifier does not transfer without calibration")
+h(2, "Performance of a reference classifier applied across datasets")
 para("The reference separates its own subspecies in 41 of 41 colonies by "
      "leave-one-colony-out. That shows these three subspecies are "
      "separable within that collection; it does not establish that the "
@@ -585,7 +593,8 @@ para("Two groups landmarking the same honey bee wings disagree by 0.00875 "
      "Procrustes units in the mean, with residual scatter accounting for "
      "the larger share of the total. The displacement is the part that "
      "matters operationally, because averaging wings within a colony "
-     "removes the residual and not the displacement. Neither the principle "
+     "cannot reduce it, whereas it reduces whatever part of the residual "
+     "is independent and zero-mean. Neither the principle "
      "nor the general method is new: Collyer and Adams (2024) set out the "
      "framework for separating systematic from random measurement error in "
      "landmark data, and Machlowska et al. (2025) applied it to honey bee "
